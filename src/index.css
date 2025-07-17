@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 15% 5%;
+    --foreground: 210 40% 98%;
+    
+    /* Game colors */
+    --game-primary: 93 75% 77%;
+    --game-primary-glow: 94 38% 59%;
+    --game-secondary: 197 100% 72%;
+    
+    /* UI colors mapped to game colors */
+    --primary: var(--game-primary);
+    --primary-foreground: 220 15% 5%;
+    --secondary: var(--game-secondary);
+    --secondary-foreground: 220 15% 5%;
+    
+    /* Arena colors */
+    --arena-bg: 216 100% 4%;
+    --arena-border:197 100% 72%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--game-primary)), hsl(var(--game-primary-glow)));
+    --gradient-arena: radial-gradient(circle at center, hsl(var(--arena-bg)), hsl(228, 8%, 12%));
+    --gradient-button: linear-gradient(135deg, hsl(var(--game-primary) / 0.8), hsl(var(--game-secondary) / 0.6));
+
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
