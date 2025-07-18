@@ -43,13 +43,13 @@ export interface Shape {
 }
 
 export const RPS_SHAPES: Shape[] = [
-  { id: 'rock', name: 'Rock', emoji: '🪨', color: 'hsl(220, 15%, 60%)' },
+  { id: 'rock', name: 'Rock', emoji: '🗿', color: 'hsl(220, 15%, 60%)' },
   { id: 'paper', name: 'Paper', emoji: '📄', color: 'hsl(45, 85%, 70%)' },
   { id: 'scissors', name: 'Scissors', emoji: '✂️', color: 'hsl(0, 85%, 65%)' }
 ];
 
 export const RPSLS_SHAPES: Shape[] = [
-  { id: 'rock', name: 'Rock', emoji: '🪨', color: 'hsl(220, 15%, 60%)' },
+  { id: 'rock', name: 'Rock', emoji: '🗿', color: 'hsl(220, 15%, 60%)' },
   { id: 'spock', name: 'Spock', emoji: '🖖', color: 'hsl(200, 50%, 50%)' },
   { id: 'paper', name: 'Paper', emoji: '📄', color: 'hsl(45, 85%, 70%)' },
   { id: 'lizard', name: 'Lizard', emoji: '🦎', color: 'hsl(120, 40%, 60%)' },
@@ -57,7 +57,7 @@ export const RPSLS_SHAPES: Shape[] = [
 ];
 
 export const RPS15_SHAPES: Shape[] = [
-  { id: 'rock', name: 'Rock', emoji: '🪨', color: 'hsl(60, 60%, 70%)' },
+  { id: 'rock', name: 'Rock', emoji: '🗿', color: 'hsl(60, 60%, 70%)' },
   { id: 'gun', name: 'Gun', emoji: '🔫', color: 'hsl(240, 15%, 60%)' },
   { id: 'lightning', name: 'Lightning', emoji: '⚡', color: 'hsl(300, 50%, 70%)' },
   { id: 'devil', name: 'Devil', emoji: '😈', color: 'hsl(270, 60%, 50%)' },
@@ -170,7 +170,7 @@ export const RPS101_SHAPES: Shape[] = [
   { id: 'law-93', name: 'Law', emoji: '⚖️', color: 'hsl(220, 40%, 50%)' },
   { id: 'whip-94', name: 'Whip', emoji: '📏', color: 'hsl(40, 50%, 40%)' },
   { id: 'sword-95', name: 'Sword', emoji: '🗡️', color: 'hsl(0, 0%, 60%)' },
-  { id: 'rock-96', name: 'Rock', emoji: '🪨', color: 'hsl(60, 60%, 70%)' },
+  { id: 'rock-96', name: 'Rock', emoji: '🗿', color: 'hsl(60, 60%, 70%)' },
   { id: 'death-97', name: 'Death', emoji: '💀', color: 'hsl(0, 0%, 20%)' },
   { id: 'wall-98', name: 'Wall', emoji: '🧱', color: 'hsl(30, 20%, 50%)' },
   { id: 'human-99', name: 'Human', emoji: '👤', color: 'hsl(0, 0%, 50%)' },
@@ -179,7 +179,7 @@ export const RPS101_SHAPES: Shape[] = [
 ];
 
 export const RPS25_SHAPES: Shape[] = [
-  { id: 'rock', name: 'Rock', emoji: '🪨', color: 'hsl(60, 60%, 70%)' },
+  { id: 'rock', name: 'Rock', emoji: '🗿', color: 'hsl(60, 60%, 70%)' },
   { id: 'gun', name: 'Gun', emoji: '🔫', color: 'hsl(240, 15%, 60%)' },
   { id: 'dynamite', name: 'Dynamite', emoji: '🧨', color: 'hsl(30, 80%, 50%)' },
   { id: 'nuke', name: 'Nuke', emoji: '☢️', color: 'hsl(0, 0%, 30%)' },

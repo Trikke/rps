@@ -15,6 +15,7 @@ const BattleArena: React.FC = () => {
   const [agentCount, setAgentCount] = useState(100);
   const [selectedMode, setSelectedMode] = useState<GameMode>(GAME_MODES[0]);
   const [isRunning, setIsRunning] = useState(false);
+  const [autoRestart, setAutoRestart] = useState(false);
   const [gameStats, setGameStats] = useState<GameStats>({
     shapeCounts: {},
     totalAgents: 0,
@@ -102,6 +103,17 @@ const BattleArena: React.FC = () => {
     };
   }, [isRunning, gameLoop]);
 
+  // Auto-restart logic
+  useEffect(() => {
+    if (gameStats.isGameOver && autoRestart && !isRunning) {
+      const timer = setTimeout(() => {
+        startGame();
+      }, 10000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [gameStats.isGameOver, autoRestart, isRunning, startGame]);
+
   // Handle canvas resize
   useEffect(() => {
     const handleResize = () => {
@@ -131,6 +143,8 @@ const BattleArena: React.FC = () => {
           gameStats={gameStats}
           onStartGame={startGame}
           onStopGame={stopGame}
+          autoRestart={autoRestart}
+          setAutoRestart={setAutoRestart}
         />
       )}
 

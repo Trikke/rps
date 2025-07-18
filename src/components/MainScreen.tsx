@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Agent, GameStats, GAME_MODES, GameMode } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { Play, Pause, RotateCcw, Trophy } from 'lucide-react';
+
+import { Play, Pause, RotateCcw, Trophy, RotateCw } from 'lucide-react';
 
 interface MainScreenProps {
   agentCount: number;
@@ -13,6 +14,8 @@ interface MainScreenProps {
   gameStats: GameStats;
   onStartGame: () => void;
   onStopGame: () => void;
+  autoRestart: boolean;
+  setAutoRestart: (enabled: boolean) => void;
 }
 
 const MainScreen: React.FC<MainScreenProps> = ({
@@ -23,7 +26,31 @@ const MainScreen: React.FC<MainScreenProps> = ({
   gameStats,
   onStartGame,
   onStopGame,
+  autoRestart,
+  setAutoRestart,
 }) => {
+  const [countdown, setCountdown] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (gameStats.isGameOver && autoRestart && countdown === null) {
+      setCountdown(10);
+    } else if (!gameStats.isGameOver) {
+      setCountdown(null);
+    }
+  }, [gameStats.isGameOver, autoRestart, countdown]);
+
+  useEffect(() => {
+    if (countdown !== null && countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (countdown === 0) {
+      setCountdown(null);
+      onStartGame();
+    }
+  }, [countdown, onStartGame]);
+
   return (
     <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/90 backdrop-blur">
       <div className="max-w-md w-full mx-6">
@@ -44,6 +71,13 @@ const MainScreen: React.FC<MainScreenProps> = ({
                 {gameStats.winningShape.name} Wins!
               </p>
               <div className="text-3xl mt-2">{gameStats.winningShape.emoji}</div>
+              {autoRestart && countdown !== null && (
+                <div className="mt-4 p-3 bg-accent/20 rounded-lg border border-accent/30">
+                  <div className="text-sm font-medium text-accent-foreground">
+                    Auto-restarting in {countdown} seconds...
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -58,7 +92,6 @@ const MainScreen: React.FC<MainScreenProps> = ({
                 min={50}
                 max={1000}
                 step={10}
-                className="w-full"
               />
             </div>
 
@@ -95,6 +128,15 @@ const MainScreen: React.FC<MainScreenProps> = ({
                 >
                   <Play className="w-4 h-4 mr-2" />
                   Start Battle
+                </Button>
+                <Button
+                  variant={autoRestart ? "default" : "outline"}
+                  size="icon"
+                  onClick={() => setAutoRestart(!autoRestart)}
+                  className="px-3"
+                  title="Auto-restart after battle"
+                >
+                  <RotateCw className={`w-4 h-4 ${autoRestart ? 'animate-pulse' : ''}`} />
                 </Button>
             </div>
           </div>

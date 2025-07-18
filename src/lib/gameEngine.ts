@@ -56,15 +56,11 @@ export class GameEngine {
       }
     }
 
-    agent1.vx = -agent1.vx;
-    agent1.vy = -agent1.vy;
-    agent2.vx = -agent2.vx;
-    agent2.vy = -agent2.vy;
-
     const dx = agent2.x - agent1.x;
     const dy = agent2.y - agent1.y;
+    const collisionAngle = Math.atan2(dy, dx);
+
     const distance = Math.sqrt(dx * dx + dy * dy);
-    
     if (distance > 0) {
       const overlap = (agent1.size + agent2.size) - distance;
       const separateX = (dx / distance) * overlap * 0.5;
@@ -75,6 +71,17 @@ export class GameEngine {
       agent2.x += separateX;
       agent2.y += separateY;
     }
+
+    const speed1 = Math.sqrt(agent1.vx * agent1.vx + agent1.vy * agent1.vy);
+    const speed2 = Math.sqrt(agent2.vx * agent2.vx + agent2.vy * agent2.vy);
+
+    const newAngle1 = collisionAngle + Math.PI;
+    const newAngle2 = collisionAngle;
+
+    agent1.vx = Math.cos(newAngle1) * speed1;
+    agent1.vy = Math.sin(newAngle1) * speed1;
+    agent2.vx = Math.cos(newAngle2) * speed2;
+    agent2.vy = Math.sin(newAngle2) * speed2;
   }
 
 
